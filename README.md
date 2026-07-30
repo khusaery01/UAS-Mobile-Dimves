@@ -32,3 +32,17 @@ php artisan serve
 flutter pub get
 flutter run
 ```
+
+## Akses Admin
+
+Jalankan backend Laravel:
+
+```bash
+php artisan serve
+```
+
+Kemudian buka panel admin melalui:
+
+```
+http://127.0.0.1:8000/admin
+```
