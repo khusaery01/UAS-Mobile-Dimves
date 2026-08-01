@@ -67,7 +67,7 @@ class FeaturedMenuSectionState extends State<FeaturedMenuSection> {
               children: const [
                 Expanded(
                   child: Text(
-                    "Menu Favorit",
+                    "Dimsum Favorit",
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -87,20 +87,24 @@ class FeaturedMenuSectionState extends State<FeaturedMenuSection> {
                 for (int i = 0; i < _favoriteDimsums.length; i++) {
                   final fav = _favoriteDimsums[i];
                   final matched = allMenus.firstWhere(
-                    (m) => m.name.toLowerCase().contains(fav.name.toLowerCase().replaceAll("dimsum ", "")),
+                    (m) => m.name.toLowerCase().contains(
+                      fav.name.toLowerCase().replaceAll("dimsum ", ""),
+                    ),
                     orElse: () => allMenus[i % allMenus.length],
                   );
-                  displayMenus.add(MenuModel(
-                    id: matched.id, // ID asli dari DB Laravel
-                    categoryId: 1,
-                    name: fav.name,
-                    description: fav.description,
-                    price: fav.price,
-                    stock: matched.stock > 0 ? matched.stock : fav.stock,
-                    image: fav.image,
-                    status: true,
-                    variants: matched.variants,
-                  ));
+                  displayMenus.add(
+                    MenuModel(
+                      id: matched.id, // ID asli dari DB Laravel
+                      categoryId: 1,
+                      name: fav.name,
+                      description: fav.description,
+                      price: fav.price,
+                      stock: matched.stock > 0 ? matched.stock : fav.stock,
+                      image: fav.image,
+                      status: true,
+                      variants: matched.variants,
+                    ),
+                  );
                 }
               } else {
                 displayMenus = _favoriteDimsums;
@@ -260,9 +264,10 @@ class _AddToCartButtonState extends State<_AddToCartButton>
       duration: const Duration(milliseconds: 200),
       vsync: this,
     );
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.85).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _scaleAnimation = Tween<double>(
+      begin: 1.0,
+      end: 0.85,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -320,10 +325,7 @@ class _AddToCartButtonState extends State<_AddToCartButton>
           ),
           child: const Padding(
             padding: EdgeInsets.all(10),
-            child: Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
+            child: Icon(Icons.add, color: Colors.white),
           ),
         ),
       ),
